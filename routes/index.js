@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-console.log("Router is Running..");
+const HomeController = require("../controllers/home_controller");
+// console.log("Router is Running..");
+router.get("/", HomeController.home);
 module.exports = router;
