@@ -4,10 +4,17 @@ const app = express();
 const port = 8040;
 const expressLayout = require("express-ejs-layouts");
 
+const cslydb = require("./config/mongoose");
+
+//used for session cookie
+const session = require("express-session");
+const passport = require("passport");
+const passportLocal = require("./config/passport_local_strategy");
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
-const cslydb = require("./config/mongoose");
+
 //for using assets
 app.use(express.static("./assets"));
 
@@ -17,11 +24,30 @@ app.use(expressLayout);
 app.set("layout extractStyles", true);
 app.set("layout extractScripts", true);
 
-//Use Express Router
-app.use("/", require("./routes"));
-
+//set up the View Engine
 app.set("view engine", "ejs");
 app.set("views", "./views");
+
+app.use(
+  session({
+    name: "csly",
+    //we have to change the secret when deployment to prod
+    secret: "HabibiComeToDubai",
+    saveUninitialized: false,
+    resave: false,
+    cookie: {
+      maxAge: 1000 * 60 * 100,
+    },
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(passport.setAuthenticatedUser);
+
+//Use Express Router
+app.use("/", require("./routes"));
 
 app.listen(port, function (err) {
   if (err) {

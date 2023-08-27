@@ -7,12 +7,18 @@ module.exports.user = (req, res) => {
 };
 
 module.exports.signUp = (req, res) => {
+  if (req.isAuthenticated()) {
+    return res.redirect("/users/profile");
+  }
   return res.render("user_sign_up", {
     title: "CSLY | Sign UP",
   });
 };
 
 module.exports.signIn = (req, res) => {
+  if (req.isAuthenticated()) {
+    return res.redirect("/users/profile");
+  }
   return res.render("user_sign_in", {
     title: "CSLY | Sign In",
   });
@@ -42,4 +48,5 @@ module.exports.create = (req, res) => {
 
 module.exports.createSession = (req, res) => {
   //create session for the user
+  return res.redirect("/users/profile");
 };
