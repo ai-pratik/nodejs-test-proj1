@@ -1,0 +1,36 @@
+// Define primary colors
+$primary-color: rgba(52, 152, 219, 0.8);
+$background-color: #f1f1f1;
+
+// Define fonts
+$font-family: 'Arial', sans-serif;
+
+// Apply global styles
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $font-family;
+  height: 100vh; // Set body height to 100% of the viewport
+}
+
+// Apply glassmorphic effect
+.glassmorphic {
+  background: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.6), transparent),
+              radial-gradient(ellipse at bottom, rgba(255, 255, 255, 0.3), transparent);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  color: #333; // Text color for light background
+}
+
+// Style the main layout
+#main-content {
+  @extend .glassmorphic;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+// Import header and footer styles
+@import 'header';
+@import 'footer';

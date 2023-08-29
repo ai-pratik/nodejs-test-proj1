@@ -1,4 +1,91 @@
-body{
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Arial", sans-serif;
+  height: 100vh; }
+
+.glassmorphic, #main-content, #layout-header, #layout-footer {
+  background: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.6), transparent), radial-gradient(ellipse at bottom, rgba(255, 255, 255, 0.3), transparent);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  color: #333; }
+
+#main-content {
+  margin: 1rem;
+  padding: 1rem; }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Arial", sans-serif; }
+
+.glassmorphic, #main-content, #layout-header, #layout-footer {
+  background: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.6), transparent), radial-gradient(ellipse at bottom, rgba(255, 255, 255, 0.3), transparent);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  color: #333; }
+
+#layout-header {
+  padding: 1rem; }
+  #layout-header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+  #layout-header .mini-logo a {
+    color: #333;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold; }
+    #layout-header .mini-logo a:hover {
+      text-decoration: underline; }
+  #layout-header .auth-links ul {
+    list-style: none;
     margin: 0;
-    text-align: center;
-}
+    padding: 0;
+    display: flex; }
+    #layout-header .auth-links ul li {
+      margin-left: 1rem; }
+      #layout-header .auth-links ul li a {
+        color: #333;
+        text-decoration: none; }
+        #layout-header .auth-links ul li a:hover {
+          text-decoration: underline; }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Arial", sans-serif; }
+
+.glassmorphic, #main-content, #layout-header, #layout-footer {
+  background: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.6), transparent), radial-gradient(ellipse at bottom, rgba(255, 255, 255, 0.3), transparent);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  color: #333; }
+
+#layout-footer {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+  #layout-footer div {
+    flex: 1; }
+    #layout-footer div p {
+      margin: 0; }
+    #layout-footer div .footer-nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex; }
+      #layout-footer div .footer-nav ul li {
+        margin-right: 1rem; }
+        #layout-footer div .footer-nav ul li a {
+          color: #333;
+          text-decoration: none; }
+          #layout-footer div .footer-nav ul li a:hover {
+            text-decoration: underline; }
