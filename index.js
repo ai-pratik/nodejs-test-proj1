@@ -4,12 +4,14 @@ const app = express();
 const port = 8040;
 const expressLayout = require("express-ejs-layouts");
 
-const cslydb = require("./config/mongoose");
+const db = require("./config/mongoose");
 
 //used for session cookie
 const session = require("express-session");
 const passport = require("passport");
 const passportLocal = require("./config/passport_local_strategy");
+
+const MongoStore = require("connect-mongo");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -38,6 +40,11 @@ app.use(
     cookie: {
       maxAge: 1000 * 60 * 100,
     },
+    //mongostore is use to store the mongodb session in db
+    store: MongoStore.create({
+      client: db.getClient(),
+      autoRemove: "disabled",
+    }),
   })
 );
 

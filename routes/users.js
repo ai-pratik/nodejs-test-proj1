@@ -11,6 +11,8 @@ router.get("/profile", passport.checkAuthentication, users_controller.user);
 router.get("/sign-up", users_controller.signUp);
 router.get("/sign-in", users_controller.signIn);
 
+router.get("/sign-out", users_controller.destroySession);
+
 router.post("/create", users_controller.create);
 
 //use passport as a middleware for Authenticate

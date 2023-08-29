@@ -48,5 +48,15 @@ module.exports.create = (req, res) => {
 
 module.exports.createSession = (req, res) => {
   //create session for the user
-  return res.redirect("/users/profile");
+  return res.redirect("/");
+};
+
+//logout controller
+module.exports.destroySession = (req, res) => {
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
 };

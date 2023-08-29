@@ -1,7 +1,13 @@
 <link rel="stylesheet" href="/css/user_profile.css">
-<h2>I am <%=title%></h2>
-
-<p><%=user.name%></p>
-<p><%=user.email%></p>
 
 
+  <!-- In your user_profile.ejs view -->
+<h2>User Profile</h2>
+<% if (user) { %>
+   
+  <p>Name: <%= user.name %></p>
+  <p>Email: <%= user.email %></p>
+  
+<% } else { %>
+  <p>User not authenticated</p>
+<% } %>
