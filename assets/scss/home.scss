@@ -1,0 +1,62 @@
+/* Reset default margins/padding */
+body, h4, p, ul, li, form {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Apply basic styles to the form and input */
+  #new-post-form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+  
+    textarea {
+      margin-bottom: 10px;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(5px);
+      color: rgb(33, 4, 4);
+      resize: vertical;
+    }
+  
+    input[type="submit"] {
+      align-self: flex-end;
+      padding: 8px 15px;
+      background: #1a1a1a;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+    }
+  }
+  
+  /* Style the list of posts */
+  #posts-list-container {
+    margin-top: 20px;
+  
+    ul {
+      list-style-type: none;
+  
+      li {
+        margin-bottom: 10px;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(5px);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+  
+        p {
+          color: white;
+        }
+  
+        small {
+          color: #bbbbbb;
+        }
+      }
+    }
+  }
+  
