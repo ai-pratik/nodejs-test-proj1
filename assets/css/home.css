@@ -1,46 +1,134 @@
-/* Reset default margins/padding */
-body, h4, p, ul, li, form {
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+body, h4, p {
   margin: 0;
   padding: 0; }
 
-/* Apply basic styles to the form and input */
-#new-post-form {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column; }
-  #new-post-form textarea {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: none;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(5px);
-    color: #210404;
-    resize: vertical; }
-  #new-post-form input[type="submit"] {
-    align-self: flex-end;
-    padding: 8px 15px;
-    background: #1a1a1a;
-    border: none;
-    border-radius: 10px;
-    color: white;
-    cursor: pointer; }
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f0f0f0;
+  color: #333; }
 
-/* Style the list of posts */
-#posts-list-container {
-  margin-top: 20px; }
-  #posts-list-container ul {
-    list-style-type: none; }
-    #posts-list-container ul li {
-      margin-bottom: 10px;
-      padding: 15px;
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(5px);
-      border-radius: 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 5px; }
-      #posts-list-container ul li p {
-        color: white; }
-      #posts-list-container ul li small {
-        color: #bbbbbb; }
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px; }
+
+#feed-posts, #posts-list-container {
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0; }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0; }
+  to {
+    transform: translateY(0);
+    opacity: 1; } }
+
+#feed-posts, #posts-list-container {
+  animation: fadeIn 1s ease-in-out; }
+
+#posts-list-container ul li {
+  animation: slideIn 0.8s ease-in-out; }
+  #posts-list-container ul li .post-comments-list ul li {
+    animation: slideIn 0.6s ease-in-out; }
+
+#feed-posts, #posts-list-container {
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 10px; }
+
+#new-post-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background-color: transparent;
+  resize: vertical;
+  color: #0e0404; }
+  #new-post-form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5); }
+
+#new-post-form input[type="submit"] {
+  background-color: rgba(0, 0, 0, 0.2);
+  border: none;
+  color: white;
+  border-radius: 16px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; }
+  #new-post-form input[type="submit"]:hover {
+    background-color: rgba(0, 0, 0, 0.2); }
+
+#posts-list-container ul {
+  list-style: none;
+  padding: 0; }
+  #posts-list-container ul li {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
+    padding: 20px; }
+    #posts-list-container ul li p {
+      position: relative; }
+      #posts-list-container ul li p small {
+        position: absolute;
+        bottom: 0;
+        right: 0; }
+    #posts-list-container ul li .post-comments-list ul {
+      list-style: none;
+      padding: 0; }
+      #posts-list-container ul li .post-comments-list ul li {
+        margin-top: 10px;
+        padding: 8px;
+        background-color: rgba(26, 26, 26, 0.2);
+        border-radius: 16px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); }
+        #posts-list-container ul li .post-comments-list ul li p {
+          margin: 0; }
+        #posts-list-container ul li .post-comments-list ul li small {
+          font-size: 0.8em; }
+
+#post-comments {
+  margin-top: 10px; }
+  #post-comments form input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    background-color: transparent;
+    color: white;
+    border-radius: 16px; }
+    #post-comments form input[type="text"]::placeholder {
+      color: rgba(255, 255, 255, 0.5); }
+  #post-comments form input[type="submit"] {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: none;
+    color: white;
+    border-radius: 16px;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; }
+    #post-comments form input[type="submit"]:hover {
+      background-color: rgba(0, 0, 0, 0.2); }
+  #post-comments .post-comments-list ul {
+    list-style: none;
+    padding: 0; }
+    #post-comments .post-comments-list ul li {
+      margin-top: 10px;
+      padding: 8px;
+      background-color: rgba(0, 0, 0, 0.2);
+      border-radius: 16px; }
+      #post-comments .post-comments-list ul li p {
+        margin: 0; }
+      #post-comments .post-comments-list ul li small {
+        font-size: 0.8em; }

@@ -1,62 +1,223 @@
-/* Reset default margins/padding */
-body, h4, p, ul, li, form {
-    margin: 0;
+// Styling for the glassmorphic effect
+$glass-bg-color: rgba(0, 0, 0, 0.2);
+$glass-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+$glass-border-radius: 12px;
+
+// Common tile styling
+$tile-padding: 20px;
+$tile-margin: 10px;
+$tile-bg-color: rgba(0, 0, 0, 0.2);
+$tile-border-radius: 16px;
+$tile-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+// Import Google Fonts for better typography
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+// Variables
+$primary-color: #3498db;
+$secondary-color: #e74c3c;
+
+// Reset some default styles
+body, h4, p {
+  margin: 0;
+  padding: 0;
+}
+
+// Apply some basic styling
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+// Styling for the glassmorphic effect
+$glass-bg-color: rgba(255, 255, 255, 0.1);
+$glass-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+$glass-border-radius: 12px;
+
+// Apply the glassmorphic effect to specific elements
+#feed-posts, #posts-list-container {
+  background-color: $glass-bg-color;
+  box-shadow: $glass-shadow;
+  border-radius: $glass-border-radius;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+// ... (rest of the styling)
+
+// Animation for fading in and sliding in
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// Apply animations
+#feed-posts, #posts-list-container {
+  animation: fadeIn 1s ease-in-out;
+}
+
+#posts-list-container ul li {
+  animation: slideIn 0.8s ease-in-out;
+  
+  .post-comments-list ul li {
+    animation: slideIn 0.6s ease-in-out;
+  }
+}
+
+// ... (rest of the styling)
+
+// Apply the glassmorphic effect to specific elements
+#feed-posts, #posts-list-container {
+  background-color: $glass-bg-color;
+  box-shadow: $glass-shadow;
+  border-radius: $glass-border-radius;
+  padding: $tile-padding;
+  margin: $tile-margin;
+}
+
+// Style the form and textarea
+#new-post-form {
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: transparent;
+    resize: vertical;
+    color: rgb(14, 4, 4);
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+  }
+  input[type="submit"] {
+    background-color: $tile-bg-color;
+    border: none;
+    color: white;
+    border-radius: $tile-border-radius;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    &:hover {
+      background-color: darken($tile-bg-color, 10%);
+    }
+  }
+}
+
+// Style the post items
+// ... (previous SCSS code)
+
+// Style the post items
+#posts-list-container {
+  ul {
+    list-style: none;
     padding: 0;
-  }
-  
-  /* Apply basic styles to the form and input */
-  #new-post-form {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-  
-    textarea {
-      margin-bottom: 10px;
-      padding: 10px;
-      border: none;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(5px);
-      color: rgb(33, 4, 4);
-      resize: vertical;
-    }
-  
-    input[type="submit"] {
-      align-self: flex-end;
-      padding: 8px 15px;
-      background: #1a1a1a;
-      border: none;
-      border-radius: 10px;
-      color: white;
-      cursor: pointer;
-    }
-  }
-  
-  /* Style the list of posts */
-  #posts-list-container {
-    margin-top: 20px;
-  
-    ul {
-      list-style-type: none;
-  
-      li {
-        margin-bottom: 10px;
-        padding: 15px;
-        background: rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(5px);
-        border-radius: 10px;
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-  
-        p {
-          color: white;
-        }
-  
+    li {
+      background-color: $tile-bg-color;
+      border-radius: $tile-border-radius;
+      box-shadow: $tile-box-shadow;
+      margin-bottom: $tile-margin;
+      padding: $tile-padding;
+      p {
+        position: relative;
         small {
-          color: #bbbbbb;
+          position: absolute;
+          bottom: 0;
+          right: 0;
+        }
+      }
+      
+      // Apply threaded effect to comments
+      .post-comments-list {
+        ul {
+          list-style: none;
+          padding: 0;
+          li {
+            margin-top: 10px;
+            padding: 8px;
+            background-color: lighten($tile-bg-color, 10%); // Lighten the background color
+            border-radius: $tile-border-radius;
+            box-shadow: $tile-box-shadow;
+            p {
+              margin: 0;
+            }
+            small {
+              font-size: 0.8em;
+            }
+          }
         }
       }
     }
   }
-  
+}
+
+// ... (remaining SCSS code)
+
+
+// Style the comment section
+#post-comments {
+  margin-top: 10px;
+  form {
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      border: none;
+      background-color: transparent;
+      color: white;
+      border-radius: $tile-border-radius;
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+    }
+    input[type="submit"] {
+      background-color: $tile-bg-color;
+      border: none;
+      color: white;
+      border-radius: $tile-border-radius;
+      padding: 6px 12px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      &:hover {
+        background-color: darken($tile-bg-color, 20%);
+      }
+    }
+  }
+  .post-comments-list {
+    ul {
+      list-style: none;
+      padding: 0;
+      li {
+        margin-top: 10px;
+        padding: 8px;
+        background-color: $tile-bg-color;
+        border-radius: $tile-border-radius;
+        p {
+          margin: 0;
+        }
+        small {
+          font-size: 0.8em;
+        }
+      }
+    }
+  }
+}

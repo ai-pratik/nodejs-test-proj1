@@ -2,7 +2,16 @@ const Post = require("../models/post");
 
 module.exports.home = async (req, res) => {
   try {
-    const posts = await Post.find({}).populate("user").exec();
+    const posts = await Post.find({})
+      .populate("user")
+      .populate({
+        path: "comments",
+        populate: {
+          path: "user",
+        },
+      })
+
+      .exec();
     console.log(posts);
     return res.render("Home", {
       title: "CSLY User Tells!",
@@ -14,3 +23,4 @@ module.exports.home = async (req, res) => {
 
   //console.log(req.cookies);
 };
+
