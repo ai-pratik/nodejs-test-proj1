@@ -26,3 +26,24 @@ module.exports.create = async (req, res) => {
     return res.status(500).send("Error finding post");
   }
 };
+
+module.exports.destroy = async (req, res) => {
+  try {
+    const comment = await Comment.findById(req.params.id);
+    if (!comment) {
+      return res.status(500).send("Error finding the comment in DB");
+    }
+    if (comment.user == req.user.id) {
+      const postId = comment.post;
+
+      comment.deleteOne();
+
+      const post = await Post.findByIdAndUpdate(postId, {
+        $pull: { comments: req.params.id },
+      });
+      return res.redirect("back");
+    }
+  } catch (e) {
+    return res.status(500).send("Error finding post");
+  }
+};

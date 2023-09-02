@@ -7,57 +7,29 @@
         <textarea name="content" col="30" row="3" placeholder="Write A POST" required></textarea>
         <input type="submit" value="post">
     </form>
-</section>
+
 <%}%>
     <div id="posts-list-container">
         <ul>
 
             <% for (post of posts) {%>
             
-                <li>
-                    <%if(locals.user && locals.user.id == post.user.id) {%>
-                        <small>
-                            <a href="/posts/destroy/<%=post.id%>">X</a>
-                            
-                        </small>
-                    <%}%>
-                    
-                <p>
-                    <%=post.content%>
-                    <small>
-                        <%=post.user.name%>
-                        <%=post.createdAt.toLocaleString()%>
-                    </small>
-                </p>
-                <div id="post-comments">
-                    <% if (locals.user){%>
-                    <form action="/comments/create" method="POST">
-                        <input type="text" name="content" placeholder="Type here comment" required>
-                        <input type="hidden" name="post" value="<%=post._id%>">
-                        <input type="submit" value="Add Comment">
-
-                    </form>
-                    <%}%>
-                    <div class="post-comments-list">
-                        <ul id="post-comments-<%=post._id%>">
-                            <%for(comment of post.comments) {%>
-                                <p>
-                                    <%=comment.content%>
-                                    <br>
-                                    <small>
-                                        <%=comment.user.name%>
-                                    </small>
-                                </p>
-                                <%}%>
-                        </ul>
-                    </div>
-
-                </div>
-
-                </li>
+               <%-include('_post')-%>
            
             
             <%}%>
         </ul>
     </div>
+</section>
+
+
+<section id="user-friends">
+    <h4>User Friends</h4>
+    <%for(u of allUsers) {%>
+        <p>
+            <a href="/users/profile/<%=u.id%>"><%=u.name%></a>
+        </p>
+    <%}%>
+</section>
+
 

@@ -1,4 +1,5 @@
 const Post = require("../models/post");
+const User = require("../models/user");
 
 module.exports.home = async (req, res) => {
   try {
@@ -12,10 +13,12 @@ module.exports.home = async (req, res) => {
       })
 
       .exec();
-    console.log(posts);
+    //console.log(posts);
+    const users = await User.find({});
     return res.render("Home", {
       title: "CSLY User Tells!",
       posts: posts,
+      allUsers: users,
     });
   } catch (error) {
     console.error("An error occurred:", error);
@@ -23,4 +26,3 @@ module.exports.home = async (req, res) => {
 
   //console.log(req.cookies);
 };
-

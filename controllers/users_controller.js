@@ -1,9 +1,25 @@
 const User = require("../models/user");
 
-module.exports.user = (req, res) => {
-  return res.render("users", {
-    title: "Hi this is Users Section!!!",
-  });
+module.exports.profile = async (req, res) => {
+  try {
+    // Use async/await to ensure that the query completes before proceeding
+    const puser = await User.findById(req.params.id);
+
+    if (puser) {
+      console.log("the username is", puser.name);
+      return res.render("user_profile", {
+        title: "Hi this is Users Section!!!",
+        profile_user: puser,
+      });
+    } else {
+      // Handle the case where the user is not found
+      return res.status(404).json({ error: "User not found" });
+    }
+  } catch (error) {
+    // Handle errors, such as database connection issues or other unexpected errors
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 };
 
 module.exports.signUp = (req, res) => {
